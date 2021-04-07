@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/justinmello/Documents/school/cst370/cst370_hw4_3/hw4_3.cpp
+iostream
+-
+vector
+-
+queue
+-
+list
+-
+
