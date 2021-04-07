@@ -1,3 +1,12 @@
+/*
+ * Title: hw4_3.cpp
+ * Abstract: This program conducts the topological
+ *           sorting based on the Kahn’s algorithm.
+ * Author: Justin Mello
+ * ID: 2002
+ * Date: 04/01/2021
+ */
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -11,7 +20,7 @@ int main() {
     int edges = 0;
     int loc1 = 0;
     int loc2 = 0;
-    int count = 0;
+    int counter = 0;
 
     //Gather user input for vertices, edgess.
     cin >> vertices;
@@ -30,36 +39,36 @@ int main() {
     }
 
     for (int i = 0; i < vertices; i++) {
-        list<int>::iterator itr;
+        list<int>::iterator itArray;
 
-        for (itr = adj[i].begin(); itr != adj[i].end(); itr++) {
-            inDegree[*itr]++;
+        for (itArray = adj[i].begin(); itArray != adj[i].end(); itArray++) {
+            inDegree[*itArray]++;
         }
     }
 
     //Copy into order from degree
     order = inDegree;
 
-    queue<int> q;
+    queue<int> tempQueue;
     for (int i = 0; i < vertices; i++) {
         if (inDegree[i] == 0) {
-            q.push(i);
+            tempQueue.push(i);
         }
     }
 
-    while (!q.empty())
+    while (!tempQueue.empty())
     {
-        int u = q.front();
-        q.pop();
-        results.push_back(u);
-
         list<int>::iterator itr;
-        for (itr = adj[u].begin(); itr != adj[u].end(); itr++)
+        int singleResult = tempQueue.front();
+        tempQueue.pop();
+        results.push_back(singleResult);
+
+        for (itr = adj[singleResult].begin(); itr != adj[singleResult].end(); itr++)
 
             if (--order[*itr] == 0)
-                q.push(*itr);
+                tempQueue.push(*itr);
 
-        count++;
+        counter++;
     }
 
     for (int i = 0; i < vertices; i++) {
